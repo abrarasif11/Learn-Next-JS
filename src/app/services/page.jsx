@@ -55,14 +55,26 @@ export default function ServicesPage() {
 
   return (
     <div>
-      <p className="text-center text-3xl text-red-600">Services Page</p>
-      {data.map((d) => (
-        <div key={d._id} className="space-y-4">
-          <Link href={`/services/${d._id}`}>
-            <img src={d.image} className="w-[600px] gap-3 m-3" />
-          </Link>
-        </div>
-      ))}
+      <p className="text-center text-3xl text-red-600 mb-6">Services Page</p>
+
+      <div className="grid grid-cols-4 gap-6">
+        {data.map((d) => (
+          <div
+            key={d._id}
+            className="p-4 border rounded-lg shadow-md hover:shadow-xl transition"
+          >
+            <Link href={`/services/${d._id}`}>
+              <img
+                src={d.image}
+                alt={d.name}
+                className="w-full h-40 object-cover rounded-md"
+              />
+            </Link>
+            <h2 className="mt-3 text-lg font-semibold">{d.name}</h2>
+            <p className="text-sm text-gray-600">{d.vendor}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
