@@ -51,15 +51,28 @@ export default function ServiceDetailsPage({ params }) {
         "https://plus.unsplash.com/premium_photo-1667520405114-47d3677f966e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2xlYW5pbmclMjBzZXJ2aWNlc3xlbnwwfHwwfHx8MA%3D%3D",
     },
   ];
+
   const id = parseInt(params.id);
   const singleData = data.find((d) => d._id === id);
+
+  if (!singleData) {
+    return (
+      <p className="text-center text-red-600 text-xl">Service not found 🚫</p>
+    );
+  }
+
   return (
-    <div>
-      <h1>Service Details </h1>
-      <p>ID : {id}</p>
-      <p>Name : {singleData.name} </p>
-      <img src={singleData.image} className="w-[400px] rounded-2xl" />
-      <p>Vendor : {singleData.vendor}</p>
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-4">Service Details</h1>
+      <p className="mb-2">ID : {id}</p>
+      <p className="mb-2 font-semibold">Name : {singleData.name}</p>
+      <img
+        src={singleData.image}
+        alt={singleData.name}
+        className="w-[400px] rounded-2xl mb-4"
+      />
+      <p className="mb-2">Vendor : {singleData.vendor}</p>
+      <p className="text-gray-600">{singleData.description}</p>
     </div>
   );
 }
